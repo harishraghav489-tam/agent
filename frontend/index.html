@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#edeefa">
+  <meta name="description" content="A thoughtful AI career companion. Find jobs and internships with your skills, interests, and ambitions in mind.">
+  <title>CareerGlass — Your next chapter</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%237467e8'/%3E%3Ctext x='12' y='46' font-size='44' fill='white'%3E✧%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div><div class="ambient ambient-three"></div>
+  <div class="shell">
+    <aside class="sidebar glass">
+      <a class="brand" href="/" aria-label="CareerGlass home"><span class="brand-icon">✧</span><span>Career<span class="brand-light">Glass</span><small>A LITTLE CLARITY. A BIG NEXT STEP.</small></span></a>
+      <div class="workspace-label">YOUR WORKSPACE</div>
+      <nav aria-label="Main navigation">
+        <button class="nav-item active" data-view="discover"><span>◈</span> Discover <span class="nav-arrow">↗</span></button>
+        <button class="nav-item" data-view="saved"><span>♡</span> Saved opportunities <span id="saved-count" class="count">0</span></button>
+        <button class="nav-item" data-view="profile"><span>◎</span> My profile</button>
+      </nav>
+      <div class="sidebar-note"><span class="tiny-sparkle">✧</span><h3>More you.<br>Less endless scrolling.</h3><p>Your skills have a story.<br>Let’s find where it goes next.</p><div class="mini-orbit"><span>✦</span></div></div>
+      <div class="sidebar-bottom"><div class="agent-indicator"><i></i> Powered by LangGraph</div><p>Made for your next chapter.</p></div>
+    </aside>
+
+    <main>
+      <header class="topbar"><div><span class="breadcrumb">Your workspace</span><span class="slash">/</span><span id="page-label">Discover</span></div><div class="topbar-right"><span id="connection" class="connection">Connecting…</span><button class="avatar" id="about-button" aria-label="About CareerGlass">CG</button></div></header>
+
+      <section id="discover-view">
+        <section class="hero">
+          <div class="hero-copy"><div class="eyebrow"><span>✦</span> YOUR AI CAREER COMPANION</div><h1>Your next chapter.<br><span>A clearer way to find it.</span></h1><p>Turn what makes you, <em>you</em>, into your next opportunity.<br>Personalized jobs and internships, thoughtfully matched by AI.</p></div>
+          <div class="hero-art" aria-hidden="true"><div class="orb"><span>✧</span></div><span class="floating-tag tag-one">✦ &nbsp; Built around you</span><span class="floating-tag tag-two">↗ &nbsp; A world of possibilities</span></div>
+        </section>
+
+        <section class="search-panel glass">
+          <div class="panel-heading"><div class="section-icon">⌘</div><div><h2>Let’s find your fit</h2><p>A profile, a few preferences, and a little possibility.</p></div><div class="mode-switch" role="group" aria-label="Search mode"><button id="live-mode" class="selected" type="button">Live search</button><button id="demo-mode" type="button">Try demo <span>↗</span></button></div></div>
+          <form id="search-form">
+            <div id="demo-notice" class="notice" hidden>Preview mode · Explore a sample profile and fictional opportunities. Your entered profile is not accessed.</div>
+            <div class="form-row">
+              <label class="profile-input-label">LinkedIn profile <span class="optional">optional</span><div class="input-wrap"><span class="linkedin-icon">in</span><input id="linkedin-url" type="url" placeholder="https://linkedin.com/in/your-name" autocomplete="url" aria-label="LinkedIn profile URL"></div></label>
+              <label>Preferred domain <span class="optional">optional</span><div class="input-wrap"><span>◈</span><input id="domain" list="domains" placeholder="Let my profile guide you"><datalist id="domains"><option value="AI & Machine Learning"><option value="Software Engineering"><option value="Data Science"><option value="Design & UI/UX"><option value="Product Management"><option value="Marketing"><option value="Finance"></datalist></div></label>
+            </div>
+            <label class="prompt-label" for="prompt">What does your next chapter look like?</label>
+            <div class="prompt-box"><textarea id="prompt" rows="2" maxlength="3000" placeholder="I’m looking for an AI internship where I can build real-world projects. I love Python, and I’d prefer a remote team…"></textarea><span aria-hidden="true">✧</span></div>
+            <div class="preference-row"><div class="type-switch" role="group" aria-label="Opportunity type"><button type="button" class="selected" data-kind="Both">All opportunities</button><button type="button" data-kind="Internships">Internships</button><button type="button" data-kind="Jobs">Jobs</button></div><div class="location-field"><span>⌖</span><input id="location" aria-label="Preferred location" placeholder="Location or remote" maxlength="120"></div></div>
+            <details class="profile-details"><summary>＋ Add skills, experience, or posts <span>For a more personal match</span></summary><label for="profile-text" class="sr-only">Your profile details and posts</label><textarea id="profile-text" maxlength="18000" rows="5" placeholder="Paste your LinkedIn About section, skills, work experience, or posts here. Especially helpful when your profile is private."></textarea><p>Only public LinkedIn content can be retrieved. Pasted information helps fill the gaps.</p></details>
+            <div class="form-footer"><fieldset class="sources"><legend>LOOK ACROSS</legend><label><input type="checkbox" value="LinkedIn" checked><span class="source-logo li">in</span> LinkedIn</label><label><input type="checkbox" value="Unstop" checked><span class="source-logo un">u</span> Unstop</label><label><input type="checkbox" value="Internshala" checked><span class="source-logo is">is</span> Internshala</label><label><input type="checkbox" value="Wellfound" checked><span class="source-logo wf">w.</span> Wellfound</label></fieldset><button class="primary-button" id="search-button" type="submit"><span>Find my opportunities</span><span>↗</span></button></div>
+          </form>
+        </section>
+
+        <div id="error-banner" class="error-banner" role="alert" hidden></div>
+        <section id="progress-panel" class="glass progress-panel" hidden aria-live="polite"><div class="progress-heading"><span class="spinner"></span><div><h3>Your next chapter is taking shape</h3><p id="progress-message">Reading your profile and public posts…</p></div><button id="cancel-button" class="text-button">Cancel</button></div><div class="steps"><span data-step="collect_profile">Profile & posts</span><span data-step="analyze_profile">Understand you</span><span data-step="find_jobs">Search boards</span><span data-step="rank_jobs">Find your fit</span><span data-step="summarize">A little clarity</span></div></section>
+
+        <section id="welcome-panel" class="welcome-panel">
+          <div class="section-title"><div><h2>A thoughtful search. From start to possibility.</h2><p>One connected workflow. Your ambitions at the center.</p></div><span class="subtle-pill">5 steps. One clear direction.</span></div>
+          <div class="feature-grid"><article class="feature-card glass"><div class="feature-symbol purple">◎</div><span class="feature-number">01</span><h3>Starts with your story</h3><p>Your public profile, skills, and posts help us understand what you bring.</p><span class="feature-caption">Beyond a job title <span>↗</span></span></article><article class="feature-card glass"><div class="feature-symbol blue">⌕</div><span class="feature-number">02</span><h3>Looks a little further</h3><p>Search across your favorite platforms for roles in the direction you choose.</p><span class="feature-caption">More places. More possibility. <span>↗</span></span></article><article class="feature-card glass"><div class="feature-symbol pink">✧</div><span class="feature-number">03</span><h3>Makes the match make sense</h3><p>Clear, friendly explanations of why a role fits — and where you can grow.</p><span class="feature-caption">Clarity, not just a list <span>↗</span></span></article></div>
+        </section>
+
+        <section id="results-panel" hidden>
+          <div class="section-title"><div><div class="eyebrow">A LITTLE CLOSER TO WHAT’S NEXT</div><h2>Your opportunity shortlist <span id="result-count" class="count"></span></h2></div><button id="export-button" class="secondary-button">↓ Export report</button></div>
+          <div id="summary-card" class="summary-card glass" aria-live="polite"></div>
+          <div id="source-status" class="source-status"></div>
+          <div id="warnings"></div>
+          <div class="results-toolbar"><div class="result-filters"><button class="selected" data-filter="All">All matches</button><button data-filter="Internship">Internships</button><button data-filter="Job">Jobs</button></div><label class="sort-label">Sort by <select id="sort-order"><option value="match">Best match</option><option value="title">Role title</option></select></label></div>
+          <div id="job-grid" class="job-grid"></div>
+          <p class="results-footnote">Match scores estimate relevance, not hiring probability. Search results may be outdated; check availability on the original listing.</p>
+        </section>
+      </section>
+
+      <section id="saved-view" class="alternate-view" hidden><div class="eyebrow">KEEP THE POSSIBILITIES CLOSE</div><h1>Worth another look.</h1><p class="view-description">Your saved opportunities, all in one place. Stored only in this browser.</p><div id="saved-grid" class="job-grid"></div></section>
+      <section id="profile-view" class="alternate-view" hidden><div class="eyebrow">THE STORY BEHIND THE SEARCH</div><h1>A little more about you.</h1><p class="view-description">The skills and interests your agent found in your most recent search.</p><div id="profile-card" class="glass profile-card"></div></section>
+
+      <footer><span class="footer-brand">✧ CareerGlass</span><span>Find a role that feels like a next step.</span><span>Thoughtfully powered by AI <span class="footer-sparkle">✦</span></span></footer>
+    </main>
+  </div>
+  <dialog id="about-dialog" class="glass"><button class="dialog-close" aria-label="Close">×</button><div class="brand-icon">✧</div><h2>A little clarity for your career.</h2><p>CareerGlass uses LangGraph to understand your public profile, search job boards, rank relevant opportunities, and explain your matches.</p><p>Live search requires OpenAI-compatible LLM and Tavily credentials in your server’s <code>.env</code> file. Profile text is sent to those providers during a live search. The server does not store your searches; saved cards stay in your browser.</p><p>Inspired by the supplied glassmorphism and liquid-glass reference.</p></dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+</body>
+</html>

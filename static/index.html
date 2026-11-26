@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Jobseeker — Your next chapter</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <div class="ambient" aria-hidden="true"></div>
+  <header><a href="/" class="brand"><span class="brand-icon">j.</span> Jobseeker</a><span id="connection" class="connection">Checking connection…</span></header>
+  <main>
+    <section class="intro"><div><p class="eyebrow">A thoughtful next step</p><h1>Your next role,<br>a little clearer.</h1><p>Turn your experience and interests into opportunities worth exploring. Your personal career agent takes it from here.</p></div><div class="orb" aria-hidden="true"><span>✧</span></div></section>
+    <div class="workspace">
+      <section class="glass composer">
+        <div class="section-heading"><h2>Start with you</h2><span class="small">Powered by LangGraph</span></div>
+        <form id="search-form">
+          <label for="linkedin">LinkedIn profile <span>optional</span></label>
+          <input id="linkedin" name="linkedin_url" type="url" placeholder="https://www.linkedin.com/in/your-name/">
+          <label for="prompt">What would you love to do?</label>
+          <textarea id="prompt" name="prompt" rows="3" maxlength="4000" placeholder="I'm a Python developer looking for AI internships in Bengaluru. I enjoy building agents and working with data."></textarea>
+          <div class="form-row"><div><label for="domain">Preferred domain</label><input id="domain" name="domain" maxlength="150" placeholder="e.g. Machine learning"></div><div><label for="location">Location</label><input id="location" name="location" maxlength="150" placeholder="e.g. Remote, India"></div></div>
+          <label for="kind">I'm looking for</label>
+          <select id="kind" name="kind"><option>Jobs &amp; internships</option><option>Internships</option><option>Jobs</option></select>
+          <details class="profile-input"><summary>Add profile details or posts</summary><p>Public profiles can be incomplete. Paste your skills, experience and recent posts for a fuller picture.</p><label for="profile-text" class="sr-only">Profile and post text</label><textarea id="profile-text" name="profile_text" maxlength="18000" rows="5" placeholder="Skills, projects, experience, and posts you'd like considered…"></textarea></details>
+          <div id="error" class="error" role="alert" hidden></div>
+          <div class="actions"><button type="submit" id="submit">Find my next opportunity <span aria-hidden="true">↗</span></button><button type="button" id="cancel" class="secondary" hidden>Cancel</button></div>
+          <p class="privacy">Your input is sent to configured AI and search providers. No profile is stored by this app.</p>
+        </form>
+      </section>
+      <aside class="glass companion">
+        <div class="section-heading"><h2>A little intelligence.<br>A lot of possibility.</h2><span class="spark" aria-hidden="true">✧</span></div>
+        <p>Your skills tell a story. We'll connect the dots, listen to your preferences, and look across the places hiring.</p>
+        <ol class="steps" aria-label="Search progress"><li data-step="collect_profile"><i></i><div><b>Get to know you</b><small>Read public profile and post evidence</small></div></li><li data-step="analyze_profile"><i></i><div><b>Find your direction</b><small>Connect skills with your preferences</small></div></li><li data-step="find_jobs"><i></i><div><b>Explore opportunities</b><small>Search four job platforms</small></div></li><li data-step="rank_jobs"><i></i><div><b>Make the connections</b><small>Rank roles and explain the fit</small></div></li><li data-step="summarize"><i></i><div><b>Your next chapter</b><small>A friendly, actionable summary</small></div></li></ol>
+        <div class="platforms"><span>LinkedIn</span><span>Internshala</span><span>Unstop</span><span>Y Combinator</span></div>
+        <p id="live-status" role="status" aria-live="polite">Ready when you are.</p>
+      </aside>
+    </div>
+    <section id="results" hidden>
+      <div class="results-heading"><div><p class="eyebrow">Made for your next move</p><h2>Your opportunity shortlist</h2></div><button id="download" class="secondary">Download report</button></div>
+      <div class="glass report"><h3>Your career companion</h3><p id="summary"></p><p id="profile-summary"></p><div id="skills" class="tags"></div><div id="warnings"></div><details><summary>Profile evidence &amp; search coverage</summary><div id="evidence"></div><div id="coverage"></div></details></div>
+      <div class="filter-bar"><label for="filter">Show results from</label><select id="filter"><option>All sources</option><option>LinkedIn</option><option>Internshala</option><option>Unstop</option><option>Y Combinator</option></select><span id="count"></span></div>
+      <div id="jobs" class="jobs"></div>
+      <p class="availability">Search-indexed listings may have changed. Confirm deadlines and availability on the original posting.</p>
+    </section>
+  </main>
+  <footer><span>Jobseeker</span><span>Built around your possibilities.</span></footer>
+</body>
+</html>
